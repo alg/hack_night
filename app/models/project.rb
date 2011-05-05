@@ -1,9 +1,9 @@
 class Project
   include Mongoid::Document
 
-  field :name,         :type => String
-  field :description,  :type => String
-  field :slots_number, :type => String
+  field :name
+  field :description
+  field :slots_number
 
   validates_presence_of :name, :description, :slots_number
   validates_numericality_of :slots_number
