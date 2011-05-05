@@ -8,11 +8,11 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database: sss_development
+  database: hack_night_development
 
 test:
   <<: *defaults
-  database: sss_test
+  database: hack_night_test
 
 # set these environment variables on your prod server
 production:

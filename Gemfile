@@ -8,6 +8,11 @@ gem "bson_ext", "~> 1.3"
 gem "haml"
 gem "less"
 
+gem 'devise'
+gem 'omniauth'
+gem 'oa-oauth', :require => 'omniauth/oauth'
+gem 'oa-openid', :require => 'omniauth/openid'
+
 group :development do
   gem "mongrel"
 end
