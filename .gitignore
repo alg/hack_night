@@ -4,3 +4,4 @@ log/*.log
 tmp/
 tags
 *.swp
+config/initializers/omniauth.rb
