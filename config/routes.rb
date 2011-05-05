@@ -1,4 +1,6 @@
 HackNight::Application.routes.draw do
+  get "dashboard/show"
+
   root :to => 'dashboard#show'
 
   # The priority is based upon order of creation:
