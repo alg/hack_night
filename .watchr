@@ -11,7 +11,7 @@ def run(cmd)
 end
  
 def spec(args)
-  run "ruby `which spec` #{args}"
+  run "ruby -Ispec #{args}"
 end
 
 def run_all_specs
@@ -22,21 +22,19 @@ end
 # Watchr Rules
 # --------------------------------------------------
 watch('app/((models|controllers)/.*).rb')       { |m| spec("spec/%s_spec.rb"      % m[1] ) }
-watch('^spec.*/.*_spec.rb'   )   { |m| spec("%s"                   % m[0] ) }
-watch('^lib/(.*).rb'         )   { |m| spec("spec/libs/%s_spec.rb" % m[1] ) }
-watch('^lib/.*/(.*).rb'      )   { |m| spec("spec/libs/%s_spec.rb" % m[1] ) }
-watch('^spec/spec_helper.rb' )   { run_all_specs }
+watch('^spec.*/.*_spec\.rb'   )   { |m| spec("%s"                   % m[0] ) }
+watch('^lib/(.*)\.rb'         )   { |m| spec("spec/libs/%s_spec.rb" % m[1] ) }
+watch('^lib/.*/(.*)\.rb'      )   { |m| spec("spec/libs/%s_spec.rb" % m[1] ) }
+watch('^spec/spec_helper\.rb' )   { run_all_specs }
  
 # --------------------------------------------------
 # Signal Handling
 # --------------------------------------------------
-# Ctrl-Signal.trap('QUIT') do
-  puts " --- Running all specs ---
-
-"
+# Ctrl-\
+Signal.trap('QUIT') do
+  puts " --- Running all specs ---\n\n"
   run_all_specs
 end
  
 # Ctrl-C
-Signal.trap('INT') { abort("
-") }
+Signal.trap('INT') { abort("\n") }
