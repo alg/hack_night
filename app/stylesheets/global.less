@@ -1,0 +1,76 @@
+@import '_forms';
+@import '_mixins';
+
+@width: 1040px;
+
+body {
+  font-size:    12pt;
+  font-family:  Helvetica,Verdana,Geneva,sans-serif;
+  line-height:  150%;
+  background:   #eee;
+}
+
+#page {
+  width: @width;
+  margin: 20px auto;
+}
+
+#header {
+  padding: 10px 40px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  font-size: 85%;
+  color: #222;
+  a:hover {
+    color: #448 !important;
+  }
+}
+
+#header, #content {
+  background-color: #f7f7f7;
+  .rounded_corners;
+  .shadowed;
+}
+
+#content {
+  min-height: 600px;
+  padding: 40px;
+}
+
+h1 { margin: 0 0 40px; font-size: 24px; text-transform: uppercase; }
+h2 { margin: 0 0 20px; }
+
+table {
+  margin: 20px 0;
+  .actions {
+    width: 150px;
+  }
+  
+  td, th { padding: 5px 10px; }
+  th { font-weight: bold; background: #ddd; }
+}
+.full { width: 100%; }
+
+.operations, .actions {
+  a { margin-right: 10px; }
+}
+
+.operations {
+  margin: 20px 0;
+}
+
+.notice, .alert { 
+  padding: 20px 40px;
+  margin: 20px 0;
+  .rounded_corners;
+  .shadowed;
+}
+.alert  { background-color: #ff9090; color: #fff; }
+.notice { background-color: #ddeedd; color: #222; }
+
+.sidebar { float: right; }
+
+.note {
+  font-size: 75%;
+  color: #666;
+}

@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %title Application
+    = stylesheet_link_tag 'reset', 'global'
+    = javascript_include_tag 'jquery', 'jquery.jgrowl.min', 'rails', 'application'
+    = csrf_meta_tag
+    
+  %body
+    #page
+      = render :partial => 'layouts/header'
+      
+      - if notice
+        .notice= notice
+      - if alert
+        .alert= alert
+      
+      #content= yield
+      = render :partial => 'layouts/footer'
