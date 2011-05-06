@@ -28,4 +28,5 @@ group :development, :test do
   gem "rspec"
   gem "rspec-rails"
   gem "watchr"
+  gem "ruby-debug"
 end
