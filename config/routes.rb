@@ -8,4 +8,5 @@ HackNight::Application.routes.draw do
   devise_for :users
 
   resources :authentications, :only => :create  
+  resources :projects
 end
