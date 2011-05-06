@@ -8,6 +8,7 @@ gem "bson_ext", "~> 1.3"
 gem "haml"
 gem "less"
 gem "inherited_resources"
+gem "simple_form"
 
 gem 'devise'
 gem 'omniauth'
