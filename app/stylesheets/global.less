@@ -1,12 +1,11 @@
+@import '_const';
 @import '_forms';
 @import '_mixins';
 
-@width: 1040px;
-
 body {
-  font-size:    12pt;
+  font-size:    13px;
   font-family:  Helvetica,Verdana,Geneva,sans-serif;
-  line-height:  150%;
+  line-height:  @padding;
   background:   #eee;
 }
 
@@ -74,3 +73,12 @@ table {
   font-size: 75%;
   color: #666;
 }
+
+.meta {
+  color: #888;
+  font-size: 85%;
+  overflow: hidden;
+  em { font-size: 125%; }
+}
+
+@import '_dashboard';

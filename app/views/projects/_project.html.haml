@@ -1,3 +1,3 @@
-.project
-  = link_to project.name, project
-  .description= project.description
+%li
+  .title= link_to project.name, project
+  .descr= project.description.truncate(200)

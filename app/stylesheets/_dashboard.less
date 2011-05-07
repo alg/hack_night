@@ -1,0 +1,74 @@
+@import '_const';
+
+.column {
+  float: left;
+  width: 290px;
+  overflow: hidden;
+  margin-right: 45px;
+}
+
+#upcoming.column {
+  margin-right: 0;
+}
+
+#messages {
+  li {
+    margin-bottom: @padding;
+  }
+
+  .avatar {
+    float: left;
+    width: 48px;
+    height: 48px;
+    margin-right: @padding;
+  }
+  
+  .content {
+    margin-left: 48px + @padding;
+  }
+  
+  form {
+    margin-top: @padding;
+  }
+
+  textarea {
+    width: 280px;
+    height: 48px;
+  }
+}
+
+#projects {
+  li {
+    margin-bottom: @padding;
+  }
+  
+  .title {
+    font-size: @bigger;
+  }
+  
+  .meta {
+    .button {
+      float: right;
+    }
+  }
+}
+
+#upcoming {
+  h2 { margin-top: @padding; }
+
+  .project {
+    font-size: @bigger;
+  }
+  
+  ul.agenda {
+    margin-top: @padding;
+
+    li {
+      margin-bottom: @padding;
+    }
+    li li {
+      margin-left: @padding;
+      margin-bottom: 0;
+    }
+  }
+}

@@ -1,5 +1,76 @@
-%h1 Dashboard
+#messages.column
+  %h1 Messages
+  %ul
+    %li
+      %img.avatar
+      .content
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat
+        rhoncus dui sit amet bibendum. Donec eget mattis elit. Cras suscipit
+        lacinia turpis duis.
+        .meta
+          username on #{Time.now.to_s(:short)}
+    %li
+      %img.avatar
+      .content
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac
+        orci lorem. Nullam quis faucibus tellus. Maecenas neque lorem, aliquam
+        non convallis amet.
+        .meta
+          username on #{Time.now.to_s(:short)}
 
-.project_list
-  = link_to "Suggest Project", new_project_path
-  = render @projects
+  = simple_form_for :message do |f|
+    = f.input :body, :as => :text, :label => false
+  
+#projects.column
+  %h1 Projects
+
+  %ul
+    %li
+      .title Project 1
+      .descr
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut nisl mi,
+        vitae suscipit odio. Maecenas convallis vestibulum facilisis. Cras malesuada
+        volutpat.
+      .meta
+        = link_to "Join", '#', :class => "button"
+        Members: <em>3</em>
+        Slots: <em>1</em>
+
+    %li
+      .title Project 2
+      .descr
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut nisl mi,
+        vitae suscipit odio. Maecenas convallis vestibulum facilisis. Cras malesuada
+        volutpat.
+      .meta
+        = link_to "Join", '#', :class => "button"
+        Members: <em>0</em>
+        Slots: <em>4</em>
+
+    = render @projects
+
+  = link_to "Suggest Project", new_project_path, :class => "button"
+
+#upcoming.column
+  %h1 Upcoming
+
+  .date May 19, 2011
+  .address
+    Solovyova blah blah blah
+  .phone
+    +38 066 7600063
+  = link_to "Show on Map", "#", :id => 'show-on-map'
+  
+  %ul.agenda
+    %li
+      .project Project 1
+      %ul
+        %li alg
+        %li cutalion
+        %li tepoga
+
+    %li
+      .project Project 2
+      %ul
+        %li jurgen
+        %li cool_kid
