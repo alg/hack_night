@@ -3,7 +3,6 @@ HackNight::Application.routes.draw do
 
   root :to => 'dashboard#show'
 
-  #match '/auth/twitter' => 'authentications#index', :as => 'auth'
   match '/auth/:provider/callback' => 'authentications#create'
   match '/auth/failure' => 'authentications#failure'
   devise_for :users

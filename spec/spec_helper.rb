@@ -9,18 +9,5 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
   config.mock_with :rspec
-
-  # cleanup database
-  require 'database_cleaner'
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
-    DatabaseCleaner.orm = "mongoid"
-  end
-  config.before(:each) do
-    DatabaseCleaner.clean
-  end
-
   config.include Devise::TestHelpers, :type => :controller
-  config.include Mongoid::Matchers
-
 end
