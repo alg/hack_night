@@ -5,8 +5,8 @@ HackNight::Application.routes.draw do
 
   match '/auth/twitter' => 'authentications#index', :as => 'auth'
   match '/auth/:provider/callback' => 'authentications#create'
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "authentications" }
 
-  resources :authentications, :only => :create  
+  resources :authentications, :only => :create
   resources :projects
 end

@@ -20,7 +20,6 @@ group :development do
 end
 
 group :development, :test do
-  gem "mongoid-rspec"
   gem "factory_girl"
   gem "shoulda"
   gem "faker"
@@ -29,4 +28,10 @@ group :development, :test do
   gem "rspec-rails"
   gem "watchr"
   gem "ruby-debug"
+end
+
+group :test do
+  gem "database_cleaner"
+  gem "mongoid-rspec"
+  gem "factory_girl_rails"
 end
