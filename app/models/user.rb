@@ -2,7 +2,6 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :email
   field :name
   field :location
   field :nickname
@@ -10,8 +9,7 @@ class User
 
   references_many :authentications, :dependent => :destroy
 
-#  devise :rememberable, :token_authenticatable, :oauthable
-  devise :omniauthable
+  devise :omniauthable, :token_authenticatable, :rememberable
 
   def self.create_from_auth_info!(auth)
     ui = auth['user_info']
@@ -20,6 +18,11 @@ class User
       :location => ui['location'],
       :nickname => ui['nickname'],
       :image    => ui['image'] })
+  end
+
+
+  def to_s
+    nickname
   end
 
 end

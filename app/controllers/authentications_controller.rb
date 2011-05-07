@@ -1,18 +1,17 @@
 class AuthenticationsController < ApplicationController
 
   def create
-    new_user  = false
-    auth      = request.env['omniauth.auth']
-    @auth     = Authentication.find_from_auth_info(auth)
+    auth = request.env['omniauth.auth']
+    @auth = Authentication.find_from_auth_info(auth) || Authentication.create_from_auth_info(auth)
 
-    unless @auth
-      new_user = true
-      @auth = Authentication.create_from_auth_info(auth, current_user)
-    end
-    
-    self.current_user = @auth.user
-    
-    redirect_to new_user ? new_survey_url : surveys_url
+    flash[:notice] = "Welcome, #{@auth.user.name}."
+    sign_in_and_redirect(:user, @auth.user)
+  end
+
+
+  def failure
+    flash[:alert] = 'Authentication attempt failed.'
+    redirect_to :root
   end
 
 end
