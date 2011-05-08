@@ -12,21 +12,21 @@ gem "simple_form"
 
 gem 'devise'
 gem 'omniauth'
-gem 'oa-oauth', :require => 'omniauth/oauth'
-gem 'oa-openid', :require => 'omniauth/openid'
 
 group :development do
   gem "mongrel"
 end
 
 group :development, :test do
-  gem "mongoid-rspec"
-  gem "factory_girl"
-  gem "shoulda"
-  gem "faker"
-  gem "timecop"
-  gem "rspec"
   gem "rspec-rails"
   gem "watchr"
   gem "ruby-debug"
+end
+
+group :test do
+  gem "shoulda"
+  gem "faker"
+  gem "timecop"
+  gem "factory_girl_rails"
+  gem "mongoid-rspec"
 end

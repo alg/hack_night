@@ -10,9 +10,9 @@ class Authentication
     where(:provider => auth['provider']).and(:uid => auth['uid']).first
   end
   
-  def self.create_from_auth_info(auth, user = nil)
+  def self.create_from_auth_info!(auth, user = nil)
     user ||= User.create_from_auth_info!(auth)
-    user.authentications.create(:provider => auth['provider'], :uid => auth['uid'])
+    user.authentications.create!(:provider => auth['provider'], :uid => auth['uid'])
   end
   
 end
