@@ -11,6 +11,9 @@ class User
 
   devise :omniauthable, :token_authenticatable, :rememberable
 
+  validates_presence_of :name
+  validates_presence_of :nickname
+
   def self.create_from_auth_info!(auth)
     ui = auth['user_info']
     create!({
