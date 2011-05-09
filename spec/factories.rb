@@ -1,5 +1,4 @@
-require 'factory_girl'
-
 Factory.define :user do |f|
-  f.name { 'Allison Cameron' }
+  f.name      { Faker::Name.name }
+  f.nickname  { Faker::Internet.user_name }
 end

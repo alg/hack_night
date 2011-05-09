@@ -8,6 +8,7 @@ class User
   field :image
 
   references_many :authentications, :dependent => :destroy
+  referenced_in :project, :inverse_of => :members
 
   devise :omniauthable, :token_authenticatable, :rememberable
 

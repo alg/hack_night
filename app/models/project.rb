@@ -1,10 +1,14 @@
 class Project
+
   include Mongoid::Document
 
   field :name
   field :description
-  field :slots_number
+  field :slots
 
-  validates_presence_of :name, :description, :slots_number
-  validates_numericality_of :slots_number
+  references_many :members, :class_name => "User"
+
+  validates_presence_of :name, :description, :slots
+  validates_numericality_of :slots
+
 end

@@ -2,7 +2,7 @@
   %h1 Messages
   %ul
     %li
-      %img.avatar
+      = image_tag current_user.image, :class => 'avatar'
       .content
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat
         rhoncus dui sit amet bibendum. Donec eget mattis elit. Cras suscipit
@@ -24,30 +24,9 @@
 #projects.column
   %h1 Projects
 
-  %ul
-    %li
-      .title Project 1
-      .descr
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut nisl mi,
-        vitae suscipit odio. Maecenas convallis vestibulum facilisis. Cras malesuada
-        volutpat.
-      .meta
-        = link_to "Join", '#', :class => "button"
-        Members: <em>3</em>
-        Slots: <em>1</em>
-
-    %li
-      .title Project 2
-      .descr
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut nisl mi,
-        vitae suscipit odio. Maecenas convallis vestibulum facilisis. Cras malesuada
-        volutpat.
-      .meta
-        = link_to "Join", '#', :class => "button"
-        Members: <em>0</em>
-        Slots: <em>4</em>
-
-    = render @projects
+  - if @projects.any?
+    %ul
+      = render @projects
 
   = link_to "Suggest Project", new_project_path, :class => "button"
 
