@@ -1,9 +1,12 @@
 #header
   #menu
+    #user-details
+      - if user_signed_in?
+        Welcome
+        %em= current_user
+        = link_to "Sign out", destroy_user_session_path
+      - else
+        = link_to "Sign in", '/auth/twitter'
+
     = link_to "Dashboard", root_path
 
-    - if user_signed_in?
-      = link_to "Sign out", destroy_user_session_path
-      %strong [#{current_user}]
-    - else
-      = link_to "Sign in", '/auth/twitter'

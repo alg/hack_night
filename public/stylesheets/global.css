@@ -59,6 +59,11 @@ body {
   color: #222222;
 }
 #header a:hover { color: #444488 !important; }
+#header #user-details { float: right; }
+#header #user-details em {
+  font-weight: bold;
+  margin-right: 20px;
+}
 #header, #content {
   background-color: #f7f7f7;
   border-radius: 5px;
