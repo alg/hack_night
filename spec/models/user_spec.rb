@@ -6,6 +6,7 @@ describe User do
 
   it { should reference_many :authentications }
   it { should be_referenced_in(:project).as_inverse_of(:members) }
+  it { should have_many :messages }
 
   it { should validate_presence_of :name }
   it { should validate_presence_of :nickname }

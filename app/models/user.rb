@@ -9,6 +9,7 @@ class User
 
   references_many :authentications, :dependent => :destroy
   referenced_in :project, :inverse_of => :members
+  has_many :messages
 
   devise :omniauthable, :token_authenticatable, :rememberable
 
