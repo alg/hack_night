@@ -18,9 +18,10 @@
         .meta
           username on #{Time.now.to_s(:short)}
 
-  = simple_form_for Message.new do |f|
-    = f.input :body, :as => :text, :label => false, :hint => "Ctrl+Enter to submit"
-    = f.button :submit
+  - if user_signed_in?
+    = simple_form_for Message.new do |f|
+      = f.input :body, :as => :text, :label => false, :hint => "Ctrl+Enter to submit"
+      = f.button :submit
 
 #projects.column
   %h1 Projects
