@@ -2,7 +2,7 @@
   %h1 Messages
   %ul
     %li
-      = image_tag current_user.image, :class => 'avatar'
+      = image_tag current_user.image, :class => 'avatar' if current_user
       .content
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat
         rhoncus dui sit amet bibendum. Donec eget mattis elit. Cras suscipit
