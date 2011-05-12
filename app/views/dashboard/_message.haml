@@ -1,0 +1,4 @@
+%li
+  = image_tag message.author.image, :class => 'avatar'
+  .content= message.body
+  .meta= "#{message.author} on #{message.created_at.to_s(:short)}"

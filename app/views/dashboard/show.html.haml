@@ -1,22 +1,7 @@
 #messages.column
   %h1 Messages
   %ul
-    %li
-      = image_tag current_user.image, :class => 'avatar' if current_user
-      .content
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat
-        rhoncus dui sit amet bibendum. Donec eget mattis elit. Cras suscipit
-        lacinia turpis duis.
-        .meta
-          username on #{Time.now.to_s(:short)}
-    %li
-      %img.avatar
-      .content
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac
-        orci lorem. Nullam quis faucibus tellus. Maecenas neque lorem, aliquam
-        non convallis amet.
-        .meta
-          username on #{Time.now.to_s(:short)}
+    = render :partial => "message", :collection => @board
 
   - if user_signed_in?
     = simple_form_for Message.new do |f|
