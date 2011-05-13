@@ -5,16 +5,16 @@ class ProjectsController < ApplicationController
   inherit_resources
 
   def create
-    create! do |success, failure|
-      failure.html do
-        flash[:alert] = "Please specify the name of the project"
-        redirect_to :root
-      end
+    @project = Project.new(params[:project])
+    @project.originator = current_user
 
-      success.html do
-        redirect_to :root
-      end
+    if @project.save
+      @project.members << current_user unless current_user.involved?
+    else
+      flash[:alert] = "Please specify the name of the project"
     end
+    
+    redirect_to :root
   end
 
 end

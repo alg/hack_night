@@ -1,4 +1,5 @@
 class User
+
   include Mongoid::Document
   include Mongoid::Timestamps
 
@@ -8,8 +9,9 @@ class User
   field :image
 
   references_many :authentications, :dependent => :destroy
-  referenced_in :project, :inverse_of => :members
-  has_many :messages
+  references_many :messages, :dependent => :destroy
+  references_many :suggested_projects, :class_name => "Project"
+  referenced_in   :project, :inverse_of => :members
 
   devise :omniauthable, :token_authenticatable, :rememberable
 
@@ -25,7 +27,10 @@ class User
       :image    => ui['image'] })
   end
 
-
+  def involved?
+    !!self.project_id
+  end
+  
   def to_s
     nickname
   end

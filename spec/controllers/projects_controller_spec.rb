@@ -2,12 +2,22 @@ require 'spec_helper'
 
 describe ProjectsController do
   
-  before { login }
+  before { @user = login }
   
   describe "create" do
     context "valid" do
       before  { post :create, :project => { :name => "sample" } }
+      specify { flash[:alert].should be_blank }
       it      { should redirect_to :root }
+      specify { assigns(:project).members.should == [ @user ] }
+    end
+
+    context "valid project by involved user" do
+      let(:current_project) { Factory(:project) }
+      before  { @user.update_attributes!(:project => current_project) }
+      before  { post :create, :project => { :name => "sample" } }
+      specify { assigns(:project).members.should be_empty }
+      specify { @user.project.should == current_project }
     end
     
     context "invalid" do
