@@ -9,13 +9,18 @@
 
 
 */form { overflow: hidden; }
+form h2 {
+  font-size: 18px;
+  margin-top: 1em;
+}
 form .input { margin: 0 0 20px; }
 form .input label { display: block; }
 form .input input {
   border: 1px solid #dddddd;
-  font-size: 16px;
-  padding: 3px 5px;
+  font-size: 14px;
+  padding: 5px;
 }
+form .input input[type=text] { width: 270px; }
 form .buttons { margin: 20px 0 0; }
 form .error {
   color: #ff0000;
@@ -27,7 +32,9 @@ form .hint {
   display: block;
 }
 form textarea {
-  width: 390px;
+  font-size: 14px;
+  width: 270px;
+  padding: 5px;
   border: 1px solid #dddddd;
 }
 form textarea.full { width: 900px; }
@@ -142,13 +149,14 @@ table th {
 }
 #messages .content { margin-left: 68px; }
 #messages form { margin-top: 20px; }
-#messages textarea {
-  width: 280px;
-  height: 48px;
-}
+#messages textarea { height: 48px; }
 #projects li { margin-bottom: 20px; }
 #projects .title { font-size: 120%; }
 #projects .meta .button { float: right; }
+#projects #suggest_project {
+  display: block;
+  margin-top: 1em;
+}
 #upcoming h2 { margin-top: 20px; }
 #upcoming .project { font-size: 120%; }
 #upcoming ul.agenda { margin-top: 20px; }

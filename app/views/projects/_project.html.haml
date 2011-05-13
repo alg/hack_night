@@ -1,7 +1,7 @@
 %li
   .title= link_to project.name, project
-  .descr= project.description.truncate(200)
+  .descr= project.description.to_s.truncate(200)
   .meta
     = link_to "Join", '#', :class => "button"
     Members: <em>3</em>
-    Slots: <em>1</em>
+    Slots: <em>#{project.slots}</em>

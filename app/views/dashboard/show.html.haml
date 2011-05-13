@@ -14,9 +14,20 @@
   - if @projects.any?
     %ul
       = render @projects
+  - else
+    .nothing
+      There are no projects yet.
+      - unless user_signed_in?
+        %p Consider signing in and suggesting something.
 
   - if user_signed_in?
-    = link_to "Suggest Project", new_project_path, :class => "button"
+    = link_to "Suggest a project", new_project_path, :class => "button", :id => "suggest_project"
+    = simple_form_for :project, :url => projects_path, :html => { :method => :post, :style => "display: none", :id => "suggest_project_form" } do |f|
+      %h2 New project
+      = f.input :name, :label => false, :input_html => { :placeholder => "Project title" }
+      = f.submit
+      or
+      = link_to "cancel", "#"
 
 #upcoming.column
   %h1 Upcoming

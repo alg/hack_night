@@ -1,6 +1,11 @@
 form {
   overflow: hidden;
 
+  h2 {
+    font-size: 18px;
+    margin-top: 1em;
+  }
+  
   .input {
     margin: 0 0 20px;
     label {
@@ -9,8 +14,12 @@ form {
 
     input {
       border: 1px solid #ddd;
-      font-size: 16px;
-      padding: 3px 5px;
+      font-size: 14px;
+      padding: 5px;
+    }
+
+    input[type=text] {
+      width: 270px;
     }
   }
   
@@ -30,7 +39,9 @@ form {
   }
   
   textarea {
-    width: 390px;
+    font-size: 14px;
+    width: 270px;
+    padding: 5px;
     border: 1px solid #ddd;
   }
   textarea.full { width: 900px; }
