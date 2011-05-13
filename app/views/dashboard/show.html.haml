@@ -15,7 +15,8 @@
     %ul
       = render @projects
 
-  = link_to "Suggest Project", new_project_path, :class => "button"
+  - if user_signed_in?
+    = link_to "Suggest Project", new_project_path, :class => "button"
 
 #upcoming.column
   %h1 Upcoming
