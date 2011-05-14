@@ -16,8 +16,6 @@ body {
 
 #header {
   padding: 10px 40px;
-  margin-bottom: 20px;
-  overflow: hidden;
   font-size: 85%;
   color: #222;
   a:hover {
@@ -33,15 +31,19 @@ body {
   }
 }
 
-#header, #content {
+.box {
   background-color: #f7f7f7;
   .rounded_corners;
   .shadowed;
+  margin: 20px 0;
+  padding: 20px 40px;
+}
+.large.box {
+  padding: 40px;
 }
 
 #content {
   min-height: 600px;
-  padding: 40px;
 }
 
 h1 { margin: 0 0 40px; font-size: 24px; text-transform: uppercase; }
