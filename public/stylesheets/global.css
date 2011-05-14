@@ -131,6 +131,15 @@ table th {
   overflow: hidden;
 }
 .meta em { font-size: 125%; }
+#attendance { text-align: center; }
+#attendance .decide a {
+  display: inline-block;
+  margin: 0 10px;
+  color: black;
+  font-weight: bold;
+  font-size: 150%;
+}
+#attendance .decide.inactive { display: none; }
 #details { overflow: hidden; }
 .column {
   float: left;
