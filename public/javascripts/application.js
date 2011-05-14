@@ -17,10 +17,6 @@ $(function() {
     sp_form.hide();
   })
 
-  $('#message_body').keypress(function(e) {
-    if (e.which == 10) $('#new_message').submit()
-  })
-
   $(".reconsider", attendance_box).click(function(e) {
     $(".decide", attendance_box).show()
     $(this).hide()
