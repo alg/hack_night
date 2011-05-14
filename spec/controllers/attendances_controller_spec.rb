@@ -18,4 +18,10 @@ describe AttendancesController do
     it { should redirect_to :dashboard }
     specify { flash[:notice].should_not be_empty }
   end
+
+  context "Anonymous user" do
+    before { logout }
+    before { post :willgo }
+    it { should redirect_to :new_user_session }
+  end
 end

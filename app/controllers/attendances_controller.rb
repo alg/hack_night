@@ -1,4 +1,7 @@
 class AttendancesController < ApplicationController
+  before_filter :authenticate_user!
+
+
   def willgo
     current_user.attend!
 
