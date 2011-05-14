@@ -51,4 +51,18 @@ describe User do
       specify { @user.should have_decided }
     end
   end
+
+  describe "scopes" do
+    before do
+      @wanderer = Factory(:user, :project => nil, :participating? => true)
+      @coder    = Factory(:user, :project => Factory(:project), :participating? => true)
+      @lazy_gut = Factory(:user, :project => nil, :participating? => false)
+    end
+
+    describe "wanderers" do
+      subject { User.wanderers }
+      it { should include @wanderer }
+      it { should_not include @coder, @lazy_gut }
+    end
+  end
 end

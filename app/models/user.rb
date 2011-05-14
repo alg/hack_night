@@ -19,6 +19,8 @@ class User
   validates_presence_of :name
   validates_presence_of :nickname
 
+  scope :wanderers, where(:project_id => nil).and(:participating? => true)
+
   def self.create_from_auth_info!(auth)
     ui = auth['user_info']
     create!({
