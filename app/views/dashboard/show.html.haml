@@ -1,18 +1,4 @@
-- if false
-  #attendance.box
-    %p.info Hack night starts in X days.
-    %p.decide
-      = link_to "I Will Go"
-      = link_to "I Won't Go"
-- else
-
-  #attendance.box
-    .info
-      Hack night starts in X days. You are (participating/not taking part).
-      = link_to "Reconcider", "javascript:void(0)", :class => "reconsider"
-    .decide.inactive
-      = link_to "I Will Go"
-      = link_to "I Won't Go"
+#attendance.box= render "attendance"
 
 #details.box.large
   #messages.column

@@ -1,5 +1,5 @@
 HackNight::Application.routes.draw do
-  get "dashboard/show"
+  get "dashboard/show", :as => 'dashboard'
 
   root :to => 'dashboard#show'
 
@@ -10,4 +10,7 @@ HackNight::Application.routes.draw do
   resources :authentications, :only => :create
   resources :projects
   resources :messages, :only => [:create, :index]
+
+  post "willgo" => "attendances#willgo"
+  post "wontgo" => "attendances#wontgo"
 end

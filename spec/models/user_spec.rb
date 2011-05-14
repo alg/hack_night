@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe User do
 
-  it { should have_fields :name, :location, :nickname, :image }
+  it { should have_fields :name, :location, :nickname, :image, :participating? }
 
   it { should reference_many :authentications }
   it { should reference_many :messages }
@@ -16,5 +16,39 @@ describe User do
     specify { Factory(:user, :project => nil).should_not be_involved }
     specify { Factory(:user, :project => Factory(:project)).should be_involved }
   end
-  
+
+  describe "attend!" do
+    before { @user = Factory(:user) }
+
+    specify { @user.should_not be_participating }
+
+    specify "attend! should make the user participating in the next HN" do
+      @user.attend!
+      @user.should be_participating
+    end
+  end
+
+  describe "backoff!" do
+    before { @user = Factory(:user, :participating? => true) }
+
+    specify { @user.should be_participating }
+
+    specify do
+      @user.skip!
+      @user.should_not be_participating
+    end
+  end
+
+  describe "decided?" do
+    before { @user = Factory(:user) }
+
+    context "when no decision made" do
+      specify { @user.should_not have_decided }
+    end
+
+    context "when decided to go" do
+      before { @user.skip! }
+      specify { @user.should have_decided }
+    end
+  end
 end

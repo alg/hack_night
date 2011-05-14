@@ -1,0 +1,13 @@
+- unless decision_made?
+  %p.info Hack night starts in X days.
+  %p.decide
+    = link_to "I Will Go", :willgo, :method => :post
+    = link_to "I Won't Go", :wontgo, :method => :post
+- else
+  %p.info
+    Hack night starts in X days.
+    You are #{current_user.participating? ? "participating" : "not taking part"}.
+    = link_to "Reconcider", "javascript:void(0)", :class => "reconsider"
+  %p.decide.inactive
+    = link_to "I Will Go", :willgo, :method => :post
+    = link_to "I Won't Go", :wontgo, :method => :post
