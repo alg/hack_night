@@ -133,6 +133,7 @@ table th {
   overflow: hidden;
 }
 .meta em { font-size: 125%; }
+#content { overflow: hidden; }
 .column {
   float: left;
   width: 290px;
