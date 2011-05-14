@@ -7,6 +7,7 @@ class User
   field :location
   field :nickname
   field :image
+  field :is_admin, :type => Boolean
 
   references_many :authentications, :dependent => :destroy
   references_many :messages, :dependent => :destroy

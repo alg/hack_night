@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe User do
 
-  it { should have_fields :name, :location, :nickname, :image }
+  it { should have_fields :name, :location, :nickname, :image, :is_admin }
 
   it { should reference_many :authentications }
   it { should reference_many :messages }
