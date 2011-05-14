@@ -1,7 +1,9 @@
 #messages.column
   %h1 Messages
-  %ul
-    = render :partial => "message", :collection => @board
+  - if @board.empty?
+    .nothing There are no messages yet.
+  - else
+    %ul= render :partial => "message", :collection => @board
 
   - if user_signed_in?
     = simple_form_for Message.new do |f|
@@ -38,7 +40,7 @@
   .phone
     +38 066 7600063
   = link_to "Show on Map", "#", :id => 'show-on-map'
-  
+
   %ul.agenda
     %li
       .project Project 1
