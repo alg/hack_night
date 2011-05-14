@@ -46,7 +46,7 @@ describe User do
       specify { @user.should_not have_decided }
     end
 
-    context "when decided to go" do
+    context "when decided not to go" do
       before { @user.skip! }
       specify { @user.should have_decided }
     end
