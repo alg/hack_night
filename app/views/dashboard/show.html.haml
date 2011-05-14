@@ -57,3 +57,8 @@
           %li jurgen
           %li cool_kid
 
+      - if @wanderers.any?
+        %li.wanderers
+          .project Wanderers
+          %ul= render :partial => "wanderer", :collection => @wanderers
+
