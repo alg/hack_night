@@ -1,0 +1,15 @@
+class AttendancesController < ApplicationController
+  def willgo
+    current_user.attend!
+
+    flash[:notice] = "You've reserved a place at the nearest hack night."
+    redirect_to :dashboard
+  end
+
+  def wontgo
+    current_user.skip!
+
+    flash[:notice] = "OK, you're excluded."
+    redirect_to :dashboard
+  end
+end

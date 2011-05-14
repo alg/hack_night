@@ -1,5 +1,24 @@
 @import '_const';
 
+#attendance {
+    text-align: center;
+  .decide {
+    a {
+      display: inline-block;
+      margin: 0 10px;
+      color: black;
+      font-weight:bold;
+      font-size: 150%;
+    }
+  }
+
+  .decide.inactive { display: none; }
+}
+
+#details {
+  overflow: hidden;
+}
+
 .column {
   float: left;
   width: 290px;
@@ -22,11 +41,11 @@
     height: 48px;
     margin-right: @padding;
   }
-  
+
   .content {
     margin-left: 48px + @padding;
   }
-  
+
   form {
     margin-top: @padding;
   }
@@ -40,17 +59,17 @@
   li {
     margin-bottom: @padding;
   }
-  
+
   .title {
     font-size: @bigger;
   }
-  
+
   .meta {
     .button {
       float: right;
     }
   }
-  
+
   #suggest_project {
     display: block;
     margin-top: 1em;
@@ -63,7 +82,7 @@
   .project {
     font-size: @bigger;
   }
-  
+
   ul.agenda {
     margin-top: @padding;
 

@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   inherit_resources
+  before_filter :authenticate_user!
 
   def create
     @message = Message.new(params[:message])
@@ -9,5 +10,12 @@ class MessagesController < ApplicationController
       failure.html { flash[:alert] = "Be nice, don't post empty threats"; redirect_to :root }
       success.html { redirect_to :root }
     end
+  end
+
+
+  private
+
+  def collection
+    @messages ||= Message.desc(:created_at)
   end
 end

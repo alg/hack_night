@@ -7,7 +7,8 @@ class User
   field :location
   field :nickname
   field :image
-  field :is_admin, :type => Boolean
+  field :is_admin, :type => Boolean, :default => false
+  field :participating?, :type => Boolean, :default => nil
 
   references_many :authentications, :dependent => :destroy
   references_many :messages, :dependent => :destroy
@@ -31,7 +32,19 @@ class User
   def involved?
     !!self.project_id
   end
-  
+
+  def attend!
+    update_attribute(:participating?, true)
+  end
+
+  def skip!
+    update_attribute(:participating?, false)
+  end
+
+  def has_decided?
+    not participating?.nil?
+  end
+
   def to_s
     nickname
   end
