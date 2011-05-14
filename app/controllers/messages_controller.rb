@@ -11,4 +11,11 @@ class MessagesController < ApplicationController
       success.html { redirect_to :root }
     end
   end
+
+
+  private
+
+  def collection
+    @messages ||= Message.desc(:created_at)
+  end
 end

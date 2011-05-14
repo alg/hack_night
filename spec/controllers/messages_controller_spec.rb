@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe MessagesController do
-  describe "create a message" do
-    before { login }
+  before { login }
 
+  describe "create a message" do
     context "if valid data provided" do
       before  { post :create, :message => Factory.attributes_for(:message) }
       it      { should redirect_to :root }
@@ -22,5 +22,11 @@ describe MessagesController do
       before  { post :create, :message => Factory.attributes_for(:message) }
       specify { assigns[:message].should_not be_valid }
     end
+  end
+
+
+  describe "GET index" do
+    before { get :index }
+    it { should assign_to :messages }
   end
 end

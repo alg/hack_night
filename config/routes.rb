@@ -9,5 +9,5 @@ HackNight::Application.routes.draw do
 
   resources :authentications, :only => :create
   resources :projects
-  resources :messages, :only => :create
+  resources :messages, :only => [:create, :index]
 end

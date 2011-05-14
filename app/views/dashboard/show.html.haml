@@ -3,12 +3,11 @@
   - if @board.empty?
     .nothing There are no messages yet.
   - else
-    %ul= render :partial => "message", :collection => @board
+    %ul= render :partial => "messages/message", :collection => @board
+    %p= link_to 'all messages', :messages
 
   - if user_signed_in?
-    = simple_form_for Message.new do |f|
-      = f.input :body, :as => :text, :label => false, :hint => "Ctrl+Enter to submit"
-      = f.button :submit
+    = render :partial => "messages/form"
 
 #projects.column
   %h1 Projects
@@ -55,11 +54,3 @@
         %li jurgen
         %li cool_kid
 
-
-  :javascript
-    $(function() {
-      // Submit msg form on Ctrl+Enter
-      $('#message_body').keypress(function(e) {
-        if (e.which == 10) $('#new_message').submit()
-      })
-    })
