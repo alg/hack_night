@@ -18,6 +18,7 @@ describe MessagesController do
 
     context "if user not logged in" do
       before  { logout }
+      before  { subject.should_receive(:authenticate_user!) }
       before  { post :create, :message => Factory.attributes_for(:message) }
       specify { assigns[:message].should_not be_valid }
     end

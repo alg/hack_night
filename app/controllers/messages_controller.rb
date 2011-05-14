@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   inherit_resources
+  before_filter :authenticate_user!
 
   def create
     @message = Message.new(params[:message])
