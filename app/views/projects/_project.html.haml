@@ -2,6 +2,10 @@
   .title= link_to project.name, project
   .descr= project.description.to_s.truncate(200)
   .meta
-    = link_to "Join", '#', :class => "button"
-    Members: <em>3</em>
+    - if current_user
+      - if current_user.project == project
+        = link_to "Leave", [ :leave, project ], :class => "button"
+      - elsif !current_user.involved?
+        = link_to "Join", [ :join, project ], :class => "button"
+    Members: <em>#{project.members.count}</em>
     Slots: <em>#{project.slots}</em>

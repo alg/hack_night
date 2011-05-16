@@ -8,8 +8,13 @@ HackNight::Application.routes.draw do
   devise_for :users
 
   resources :authentications, :only => :create
-  resources :projects
-  resources :messages, :only => [:create, :index]
+  resources :projects do
+    member do
+      get :join
+      get :leave
+    end
+  end
+  resources :messages, :only => [ :create, :index ]
 
   post "willgo" => "attendances#willgo"
   post "wontgo" => "attendances#wontgo"
