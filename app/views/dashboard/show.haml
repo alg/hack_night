@@ -29,12 +29,9 @@
 
       - if user_signed_in?
         = link_to "Suggest a project", new_project_path, :class => "button", :id => "suggest_project"
-        = simple_form_for :project, :url => projects_path, :html => { :method => :post, :style => "display: none", :id => "suggest_project_form" } do |f|
-          %h2 New project
-          = f.input :name, :label => false, :input_html => { :placeholder => "Project title" }
-          = f.submit
-          or
-          = link_to "cancel", "#"
+        = form_for :project, :url => projects_path, :html => { :method => :post, :style => "display: none", :id => "suggest_project_form" } do |f|
+          = f.text_field :name, :placeholder => "Project title"
+          = f.submit "Suggest Project", :class => "button"
 
   #upcoming.column
     %h1 Upcoming
@@ -65,3 +62,4 @@
           .project Wanderers
           %ul= render :partial => "wanderer", :collection => @wanderers
 
+= javascript_include_tag "dashboard"

@@ -1,0 +1,100 @@
+@import "_const";
+@import "_mixins";
+
+.button {
+  display: inline-block;
+  padding: .35em .35em;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  .rounded_corners(5px);
+  .shadowed;
+  text-shadow: 0 1px 1px rgba(0,0,0,.3);
+  font-size: 12px;
+  
+  :hover { text-decoration: none }
+  :active { position: relative; }
+}
+
+input.button {
+  padding: .35em .75em;
+}
+
+.small.button {
+  padding: .05em .75em;
+}
+
+.color (@background:#f00) {
+  background: @background;
+  border: solid 1px (@background - #111);
+}
+
+.button {
+  @c: @dark_gray;
+  @p: #0d0d0d;
+
+  color: #fff !important;
+  .color(@c);
+  :hover  { .gradient(@c + @p * 4, @c - @p); }
+  :active { .gradient(@c, @c - @p * 5); border: solid 1px (@c - @p * 6); }
+}
+
+.easy.button {
+  @c: @blue;
+  @p: #0d0d0d;
+
+  color: #fff;
+  .color(@c);
+  :hover  { .gradient(@c + @p * 4, @c - @p); }
+  :active { .gradient(@c, @c - @p * 5); border: solid 1px (@c - @p * 6); }
+}
+
+.dangerous.button {
+  @c: #b66;
+  @p: #0d0d0d;
+
+  color: #fff;
+  .color(@c);
+  :hover  { .gradient(@c + @p * 4, @c - @p); }
+  :active { .gradient(@c, @c - @p * 5); border: solid 1px (@c - @p * 6); }
+}
+
+.submit.button, .edit.button {
+  @c: @orange;
+  @p: #0d0d0d;
+
+  color: #fff;
+  .color(@c);
+  :hover  { .gradient(@c + @p * 4, @c - @p); }
+  :active { .gradient(@c, @c - @p * 5); border: solid 1px (@c - @p * 6); }
+}
+
+.enter.button { 
+  @c: @green;
+  @p: #0d0d0d;
+
+  color: #fff;
+  .color(@c);
+  :hover  { .gradient(@c + @p * 4, @c - @p); }
+  :active { .gradient(@c, @c - @p * 5); border: solid 1px (@c - @p * 6); }
+}
+
+.front.button {
+  @c: #ff7f00;
+  @p: #0d0d0d;
+
+  font-family: @minion;
+  font-weight: normal;
+  font-size: 24px;
+  padding: .5em 1em .45em;
+  border: 6px solid #f7f7f7 !important;
+  .rounded_corners(10px);
+  .darker_shadowed;
+  
+  color: #fff;
+  .color(@c);
+  .gradient(#f8b360, @c);
+  :hover  { .gradient(@c + @p * 4, @c - @p); }
+  :active { .gradient(@c, @c - @p * 5); border: solid 1px (@c - @p * 6); }
+}

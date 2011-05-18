@@ -13,6 +13,8 @@ HackNight::Application.routes.draw do
       get :join
       get :leave
     end
+    
+    resources :links, :only => :create
   end
   resources :messages, :only => [ :create, :index ]
 

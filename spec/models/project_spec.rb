@@ -10,5 +10,6 @@ describe Project do
 
   it { should reference_many :members }
   it { should be_referenced_in(:originator).as_inverse_of(:suggested_projects) }
+  it { should embed_many :links }
 
 end

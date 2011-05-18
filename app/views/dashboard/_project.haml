@@ -1,14 +1,18 @@
 %h1
   .actions
-    = link_to "Leave", [ :leave, project ], :class => "red button"
+    = link_to "Leave", [ :leave, project ], :class => "dangerous small button"
   = project.name
 
 #links
   %ul
-    %li= link_to "Pivotal", '#'
-    %li= link_to "Repository", '#'
+    - project.links.each do |link|
+      %li= link_to link.label, link.url
     %li.add
       = link_to "[+] Add link", '#'
+      = form_for :link, :url => [ project, :links ], :html => { :style => 'display: none' } do |f|
+        = submit_tag "Add", :class => 'button'
+        = f.text_field :label, :placeholder => "Label"
+        = f.text_field :url, :placeholder => "http://..."
 
 #statuses
   %h2 Statuses

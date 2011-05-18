@@ -5,7 +5,7 @@
     - if m == current_user
       = form_for :status, :url => '#' do |f|
         = text_area_tag :body, "", :placeholder => "My current status"
-        = submit_tag "Update"
+        = submit_tag "Update Status", :class => "button"
     - else
       Lipsum Lipsum Lipsum Lipsum Lipsum Lipsum Lipsum Lipsum Lipsum 
       Lipsum Lipsum Lipsum Lipsum Lipsum Lipsum Lipsum Lipsum Lipsum 

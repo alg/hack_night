@@ -59,10 +59,7 @@
     display: block;
     margin-top: 1em;
   }
-  
-  #links {
-    li { margin: 0; }
-  }
+  #project_name { width: 277px; }
   
   h2 { margin-top: @padding; }
   #statuses {
@@ -90,6 +87,23 @@
     li li {
       margin-left: @padding;
       margin-bottom: 0;
+    }
+  }
+}
+
+#links {
+  li { margin: 0; }
+
+  li:first-child { margin-top: 0 !important; }
+  li:last-child { margin-top: @padding; }
+
+  .add {
+    #link_label, #link_url {
+      width: 220px;
+    }
+
+    form {
+      margin-top: 10px;
     }
   }
 }

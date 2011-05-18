@@ -11,3 +11,8 @@ Factory.define :project do |f|
   f.association :originator, :factory => :user
   f.name        { Faker::Lorem.words(3) }
 end
+
+Factory.define :link do |f|
+  f.label       { Faker::Lorem.words(3) }
+  f.url         { "http://#{Faker::Internet.domain_name}/" }
+end
