@@ -1,0 +1,19 @@
+%h1
+  .actions
+    = link_to "Leave", [ :leave, project ], :class => "red button"
+  = project.name
+
+#links
+  %ul
+    %li= link_to "Pivotal", '#'
+    %li= link_to "Repository", '#'
+    %li.add
+      = link_to "[+] Add link", '#'
+
+#statuses
+  %h2 Statuses
+  %ul
+    = render :partial => "status", :object => current_user
+    - project.members.each do |m|
+      - next if m == current_user
+      = render :partial => "status", :object => m

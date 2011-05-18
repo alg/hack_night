@@ -1,7 +1,7 @@
 @import '_const';
 
 #attendance {
-    text-align: center;
+  text-align: center;
   .decide {
     a {
       display: inline-block;
@@ -31,21 +31,6 @@
 }
 
 #messages {
-  li {
-    margin-bottom: @padding;
-  }
-
-  .avatar {
-    float: left;
-    width: 48px;
-    height: 48px;
-    margin-right: @padding;
-  }
-
-  .content {
-    margin-left: 48px + @padding;
-  }
-
   form {
     margin-top: @padding;
   }
@@ -73,6 +58,18 @@
   #suggest_project {
     display: block;
     margin-top: 1em;
+  }
+  
+  #links {
+    li { margin: 0; }
+  }
+  
+  h2 { margin-top: @padding; }
+  #statuses {
+    textarea {
+      width: 210px;
+      height: 37px;
+    }
   }
 }
 

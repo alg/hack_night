@@ -131,6 +131,17 @@ table th {
   overflow: hidden;
 }
 .meta em { font-size: 125%; }
+.avatar {
+  float: left;
+  width: 48px;
+  height: 48px;
+  margin-right: 20px;
+}
+h1 .actions {
+  text-transform: none;
+  float: right;
+  font-size: 12px;
+}
 #attendance { text-align: center; }
 #attendance .decide a {
   display: inline-block;
@@ -148,14 +159,6 @@ table th {
   margin-right: 45px;
 }
 #upcoming.column { margin-right: 0; }
-#messages li { margin-bottom: 20px; }
-#messages .avatar {
-  float: left;
-  width: 48px;
-  height: 48px;
-  margin-right: 20px;
-}
-#messages .content { margin-left: 68px; }
 #messages form { margin-top: 20px; }
 #messages textarea { height: 48px; }
 #projects li { margin-bottom: 20px; }
@@ -165,6 +168,12 @@ table th {
   display: block;
   margin-top: 1em;
 }
+#projects #links li { margin: 0; }
+#projects h2 { margin-top: 20px; }
+#projects #statuses textarea {
+  width: 210px;
+  height: 37px;
+}
 #upcoming h2 { margin-top: 20px; }
 #upcoming .project { font-size: 120%; }
 #upcoming ul.agenda { margin-top: 20px; }
@@ -173,4 +182,8 @@ table th {
   margin-left: 20px;
   margin-bottom: 0;
 }
-#messages form { margin-bottom: 20px; }
+.message {
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.message .content { margin-left: 68px; }
