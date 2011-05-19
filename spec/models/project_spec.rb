@@ -12,4 +12,16 @@ describe Project do
   it { should be_referenced_in(:originator).as_inverse_of(:suggested_projects) }
   it { should embed_many :links }
 
+  describe "upcoming" do
+    before do
+      @active    = Factory(:project, :members => [Factory(:user, :participating? => true)])
+      @abandoned = Factory(:project)
+      @suspended = Factory(:project, :members => [Factory(:user, :participating? => false)])
+    end
+
+    subject { Project.upcoming }
+    it { should include @active }
+    it { should_not include @abandoned, @suspended }
+  end
+
 end

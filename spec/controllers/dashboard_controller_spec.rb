@@ -7,6 +7,7 @@ describe DashboardController do
     before { get :show }
     it     { should assign_to :projects }
     it     { should assign_to :wanderers }
+    it     { should assign_to :upcoming_projects}
   end
 
   describe "message board" do
