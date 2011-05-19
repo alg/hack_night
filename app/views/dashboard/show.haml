@@ -44,18 +44,7 @@
     = link_to "Show on Map", "#", :id => 'show-on-map'
 
     %ul.agenda
-      %li
-        .project Project 1
-        %ul
-          %li alg
-          %li cutalion
-          %li tepoga
-
-      %li
-        .project Project 2
-        %ul
-          %li jurgen
-          %li cool_kid
+      = render :partial => "upcoming_project", :collection => @upcoming_projects
 
       - if @wanderers.any?
         %li.wanderers
