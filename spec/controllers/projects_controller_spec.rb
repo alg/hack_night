@@ -64,6 +64,13 @@ describe ProjectsController do
       specify { flash[:alert].should == "The project you wished to join is missing." }
       it      { should redirect_to :root }
     end    
+    
+    context "no vacant slots" do
+      before  { project.update_attributes!(:slots => 0) }
+      before  { get :join, :id => project.id }
+      specify { flash[:alert].should == "This project doesn't have vacant slots. Talk to the members." }
+      it      { should redirect_to :root }
+    end
   end
   
   describe "leave" do

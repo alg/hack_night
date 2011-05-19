@@ -22,6 +22,8 @@ class ProjectsController < ApplicationController
 
     if current_user.involved?
       flash[:alert] = "You are currently involved in #{current_user.project.name}. You need to leave it first."
+    elsif !@project.has_vacant_slots?
+      flash[:alert] = "This project doesn't have vacant slots. Talk to the members."
     else
       current_user.project = @project
       current_user.save
