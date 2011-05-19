@@ -17,4 +17,9 @@ class Project
   def self.upcoming
     User.where(:participating? => true).map(&:project).uniq.compact
   end
+  
+  def has_vacant_slots?
+    self.slots > self.members.count
+  end
+  
 end

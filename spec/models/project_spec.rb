@@ -14,9 +14,9 @@ describe Project do
 
   describe "upcoming" do
     before do
-      @active    = Factory(:project, :members => [Factory(:user, :participating? => true)])
+      @active    = Factory(:project, :members => [ Factory(:user, :participating? => true) ])
       @abandoned = Factory(:project)
-      @suspended = Factory(:project, :members => [Factory(:user, :participating? => false)])
+      @suspended = Factory(:project, :members => [ Factory(:user, :participating? => false) ])
     end
 
     subject { Project.upcoming }
@@ -24,4 +24,18 @@ describe Project do
     it { should_not include @abandoned, @suspended }
   end
 
+  describe "has_vacant_slots?" do
+    let(:project) { Factory(:project, :slots => 1) }
+    subject { project }
+
+    context "when has" do
+      it { should have_vacant_slots }
+    end
+    
+    context "when hasn't" do
+      before { project.members << Factory(:user) }
+      it { should_not have_vacant_slots }
+    end
+  end
+  
 end

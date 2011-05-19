@@ -5,7 +5,7 @@
     - if current_user
       - if current_user.project == project
         = link_to "Leave", [ :leave, project ], :class => "small button"
-      - elsif !current_user.involved?
+      - elsif !current_user.involved? && project.has_vacant_slots?
         = link_to "Join", [ :join, project ], :class => "small button"
     Members: <em>#{project.members.count}</em>
     Slots: <em>#{project.slots}</em>
