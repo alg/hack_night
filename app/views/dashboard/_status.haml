@@ -3,9 +3,11 @@
   = image_tag m.image, :class => 'avatar'
   .content
     - if m == current_user
-      = form_for :status, :url => '#' do |f|
-        = text_area_tag :body, "", :placeholder => "My current status"
+      = form_for :status, :url => update_status_url do |f|
+        = text_area_tag :status, "", :placeholder => m.status
         = submit_tag "Update Status", :class => "button"
     - else
-      Lipsum Lipsum Lipsum Lipsum Lipsum Lipsum Lipsum Lipsum Lipsum 
-      Lipsum Lipsum Lipsum Lipsum Lipsum Lipsum Lipsum Lipsum Lipsum 
+      - if m.status.blank?
+        .nothing Zzz&hellip; zzz&hellip;
+      - else
+        = m.status

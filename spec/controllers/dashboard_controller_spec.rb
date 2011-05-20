@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe DashboardController do
-  before { login }
+  before { @user = login }
 
   describe "#show" do
     before { get :show }
@@ -15,4 +15,20 @@ describe DashboardController do
     before { get :show }
     it     { should assign_to :board }
   end
+  
+  describe "update status" do
+    context "as logged in" do
+      before  { post :update_status, :status => "new status" }
+      before  { @user.reload }
+      specify { @user.status.should == "new status" }
+      it      { should redirect_to :root }
+    end
+    
+    context "as logged out" do
+      before  { logout }
+      before  { post :update_status }
+      it      { should redirect_to :new_user_session }
+    end
+  end
+  
 end

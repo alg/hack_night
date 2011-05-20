@@ -8,6 +8,7 @@ class User
   field :nickname
   field :image
   field :participating?, :type => Boolean, :default => nil
+  field :status
 
   references_many :authentications, :dependent => :destroy
   references_many :messages, :dependent => :destroy

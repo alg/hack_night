@@ -1,8 +1,7 @@
 HackNight::Application.routes.draw do
-  get "dashboard/show", :as => 'dashboard'
-
-  root :to => 'dashboard#show'
-
+  root  :to => 'dashboard#show'
+  post  '/update_status' => 'dashboard#update_status', :as => 'update_status'
+  
   match '/auth/:provider/callback' => 'authentications#create'
   match '/auth/failure' => 'authentications#failure'
   devise_for :users
