@@ -71,6 +71,17 @@ describe ProjectsController do
       specify { flash[:alert].should == "This project doesn't have vacant slots. Talk to the members." }
       it      { should redirect_to :root }
     end
+    
+    context "as a first member of the project" do
+      before  { get :join, :id => project.id }
+      specify { @user.reload.should be_manager_of project }
+    end
+    
+    context "as a second member of the project" do
+      before  { project.members << Factory(:user) }
+      before  { get :join, :id => project.id }
+      specify { @user.reload.should_not be_manager_of project }
+    end
   end
   
   describe "leave" do
@@ -95,6 +106,21 @@ describe ProjectsController do
       before  { @user.reload }
       specify { @user.project.should == current_project }
       specify { flash[:alert].should == "You are not a part of this project." }
+      it      { should redirect_to :root }
+    end
+    
+    context "as a manager with some members left" do
+      before  { current_project.members << Factory(:user) }
+      before  { @user.managed_project = current_project; @user.save }
+      before  { get :leave, :id => current_project.id.to_s }
+      specify { flash[:alert].should == "You are the manager of this project. Relay your role to someone before leaving." }
+      it      { should redirect_to :root }
+    end
+    
+    context "as a manager and the last member" do
+      before  { @user.managed_project = current_project; @user.save }
+      before  { get :leave, :id => current_project.id.to_s }
+      specify { @user.reload.should_not be_manager_of current_project }
       it      { should redirect_to :root }
     end
   end

@@ -9,4 +9,12 @@ class ApplicationController < ActionController::Base
       sign_in :user, u
     end
   end
+
+
+  def admin_required
+    unless current_user && current_user.is_admin?
+      flash[:alert] = 'You must be admin to view that page'
+      redirect_to root_path
+    end
+  end
 end

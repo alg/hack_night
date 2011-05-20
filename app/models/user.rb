@@ -7,12 +7,15 @@ class User
   field :location
   field :nickname
   field :image
+  field :is_admin, :type => Boolean, :default => false
   field :participating?, :type => Boolean, :default => nil
+  field :status
 
   references_many :authentications, :dependent => :destroy
   references_many :messages, :dependent => :destroy
   references_many :suggested_projects, :class_name => "Project"
   referenced_in   :project, :inverse_of => :members
+  referenced_in   :managed_project, :class_name => "Project", :inverse_of => :manager
 
   devise :omniauthable, :token_authenticatable, :rememberable
 
@@ -50,4 +53,8 @@ class User
     nickname
   end
 
+  def manager_of?(project)
+    self.managed_project == project
+  end
+  
 end
