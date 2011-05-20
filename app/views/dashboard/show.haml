@@ -1,0 +1,54 @@
+#attendance.box= render "attendance"
+
+#details.box.large
+  #messages.column
+    %h1 Messages
+    - if @board.empty?
+      .nothing There are no messages yet.
+    - else
+      %ul= render :partial => "messages/message", :collection => @board
+      -# @alg: Can't see any sense in this yet: %p= link_to 'all messages', :messages
+
+    - if user_signed_in?
+      = render :partial => "messages/form"
+
+  #projects.column
+    - if user_signed_in? && current_user.involved?
+      = render :partial => "project", :object => current_user.project
+    - else
+      %h1 Projects
+
+      - if @projects.any?
+        %ul
+          = render @projects
+      - else
+        .nothing
+          There are no projects yet.
+          - unless user_signed_in?
+            %p Consider signing in and suggesting something.
+
+      - if user_signed_in?
+        = link_to "Suggest a project", new_project_path, :class => "button", :id => "suggest_project"
+        = form_for :project, :url => projects_path, :html => { :method => :post, :style => "display: none", :id => "suggest_project_form" } do |f|
+          = f.text_field :name, :placeholder => "Project title"
+          = f.submit "Suggest Project", :class => "button"
+
+  #upcoming.column
+    %h1 Upcoming
+
+    .date May 19, 2011
+    .address
+      Solovyova blah blah blah
+    .phone
+      +38 066 7600063
+    = link_to "Show on Map", "#", :id => 'show-on-map'
+
+    %ul.agenda
+      = render :partial => "upcoming_project", :collection => @upcoming_projects
+
+      - if @wanderers.any?
+        %li.wanderers
+          .project Wanderers
+          %ul= render :partial => "wanderer", :collection => @wanderers
+
+= javascript_include_tag "dashboard"

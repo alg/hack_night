@@ -1,7 +1,7 @@
 @import '_const';
 
 #attendance {
-    text-align: center;
+  text-align: center;
   .decide {
     a {
       display: inline-block;
@@ -31,21 +31,6 @@
 }
 
 #messages {
-  li {
-    margin-bottom: @padding;
-  }
-
-  .avatar {
-    float: left;
-    width: 48px;
-    height: 48px;
-    margin-right: @padding;
-  }
-
-  .content {
-    margin-left: 48px + @padding;
-  }
-
   form {
     margin-top: @padding;
   }
@@ -74,6 +59,15 @@
     display: block;
     margin-top: 1em;
   }
+  #project_name { width: 277px; }
+  
+  h2 { margin-top: @padding; }
+  #statuses {
+    textarea {
+      width: 210px;
+      height: 37px;
+    }
+  }
 }
 
 #upcoming {
@@ -93,6 +87,23 @@
     li li {
       margin-left: @padding;
       margin-bottom: 0;
+    }
+  }
+}
+
+#links {
+  li { margin: 0; }
+
+  li:first-child { margin-top: 0 !important; }
+  li:last-child { margin-top: @padding; }
+
+  .add {
+    #link_label, #link_url {
+      width: 220px;
+    }
+
+    form {
+      margin-top: 10px;
     }
   }
 }

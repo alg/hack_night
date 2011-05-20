@@ -1,15 +1,21 @@
 HackNight::Application.routes.draw do
-  get "dashboard/show", :as => 'dashboard'
-
-  root :to => 'dashboard#show'
-
+  root  :to => 'dashboard#show'
+  post  '/update_status' => 'dashboard#update_status', :as => 'update_status'
+  
   match '/auth/:provider/callback' => 'authentications#create'
   match '/auth/failure' => 'authentications#failure'
   devise_for :users
 
   resources :authentications, :only => :create
-  resources :projects
-  resources :messages, :only => [:create, :index]
+  resources :projects do
+    member do
+      get :join
+      get :leave
+    end
+    
+    resources :links, :only => :create
+  end
+  resources :messages, :only => [ :create, :index ]
 
   post "willgo" => "attendances#willgo"
   post "wontgo" => "attendances#wontgo"

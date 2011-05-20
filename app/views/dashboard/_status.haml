@@ -1,0 +1,13 @@
+- m = status
+%li.message
+  = image_tag m.image, :class => 'avatar'
+  .content
+    - if m == current_user
+      = form_for :status, :url => update_status_url do |f|
+        = text_area_tag :status, "", :placeholder => m.status
+        = submit_tag "Update Status", :class => "button"
+    - else
+      - if m.status.blank?
+        .nothing Zzz&hellip; zzz&hellip;
+      - else
+        = m.status

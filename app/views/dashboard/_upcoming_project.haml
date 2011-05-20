@@ -1,0 +1,5 @@
+%li
+  .project= upcoming_project
+  %ul
+    - upcoming_project.members.each do |member|
+      %li= member

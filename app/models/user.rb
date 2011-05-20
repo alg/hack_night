@@ -9,16 +9,20 @@ class User
   field :image
   field :is_admin, :type => Boolean, :default => false
   field :participating?, :type => Boolean, :default => nil
+  field :status
 
   references_many :authentications, :dependent => :destroy
   references_many :messages, :dependent => :destroy
   references_many :suggested_projects, :class_name => "Project"
   referenced_in   :project, :inverse_of => :members
+  referenced_in   :managed_project, :class_name => "Project", :inverse_of => :manager
 
   devise :omniauthable, :token_authenticatable, :rememberable
 
   validates_presence_of :name
   validates_presence_of :nickname
+
+  scope :wanderers, where(:project_id => nil).and(:participating? => true)
 
   def self.create_from_auth_info!(auth)
     ui = auth['user_info']
@@ -49,4 +53,8 @@ class User
     nickname
   end
 
+  def manager_of?(project)
+    self.managed_project == project
+  end
+  
 end

@@ -5,3 +5,4 @@ tmp/
 tags
 *.swp
 config/initializers/omniauth.rb
+TAGS

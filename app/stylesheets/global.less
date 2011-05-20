@@ -91,5 +91,20 @@ table {
   em { font-size: 125%; }
 }
 
+.avatar {
+  float: left;
+  width: 48px;
+  height: 48px;
+  margin-right: @padding;
+}
+
+h1 .actions {
+  text-transform: none;
+  float: right;
+  font-size: 12px;
+  a { margin: 0 0 0 10px; }
+}
+
 @import '_dashboard';
 @import '_messages';
+@import '_buttons';

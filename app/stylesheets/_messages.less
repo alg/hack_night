@@ -1,3 +1,10 @@
-#messages form {
-  margin-bottom: 20px;
+@import '_const';
+
+.message {
+  overflow: hidden;
+  margin-bottom: @padding;
+
+  .content {
+    margin-left: 48px + @padding;
+  }
 }

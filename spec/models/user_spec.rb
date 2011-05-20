@@ -2,12 +2,13 @@ require "spec_helper"
 
 describe User do
 
-  it { should have_fields :name, :location, :nickname, :image, :participating?, :is_admin }
+  it { should have_fields :name, :location, :nickname, :image, :participating?, :status, :is_admin }
 
   it { should reference_many :authentications }
   it { should reference_many :messages }
   it { should reference_many :suggested_projects }
   it { should be_referenced_in(:project).as_inverse_of(:members) }
+  it { should be_referenced_in(:managed_project).as_inverse_of(:manager) }
 
   it { should validate_presence_of :name }
   it { should validate_presence_of :nickname }
@@ -49,6 +50,20 @@ describe User do
     context "when decided not to go" do
       before { @user.skip! }
       specify { @user.should have_decided }
+    end
+  end
+
+  describe "scopes" do
+    before do
+      @wanderer = Factory(:user, :project => nil, :participating? => true)
+      @coder    = Factory(:user, :project => Factory(:project), :participating? => true)
+      @lazy_gut = Factory(:user, :project => nil, :participating? => false)
+    end
+
+    describe "wanderers" do
+      subject { User.wanderers }
+      it { should include @wanderer }
+      it { should_not include @coder, @lazy_gut }
     end
   end
 end
