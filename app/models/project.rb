@@ -6,8 +6,9 @@ class Project
   field :description
   field :slots, :type => Integer, :default => 4
 
-  references_many :members, :class_name => "User", :inverse_of => :project, :autosave => true
+  references_many :members,    :class_name => "User", :inverse_of => :project, :autosave => true
   referenced_in   :originator, :class_name => "User", :inverse_of => :suggested_projects
+  references_one  :manager,    :class_name => "User"
   embeds_many     :links
 
   validates_presence_of     :name

@@ -8,6 +8,7 @@ describe User do
   it { should reference_many :messages }
   it { should reference_many :suggested_projects }
   it { should be_referenced_in(:project).as_inverse_of(:members) }
+  it { should be_referenced_in(:managed_project).as_inverse_of(:manager) }
 
   it { should validate_presence_of :name }
   it { should validate_presence_of :nickname }

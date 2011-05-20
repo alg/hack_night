@@ -13,6 +13,7 @@ class User
   references_many :messages, :dependent => :destroy
   references_many :suggested_projects, :class_name => "Project"
   referenced_in   :project, :inverse_of => :members
+  referenced_in   :managed_project, :class_name => "Project", :inverse_of => :manager
 
   devise :omniauthable, :token_authenticatable, :rememberable
 
