@@ -36,8 +36,16 @@ class ProjectsController < ApplicationController
   end
   
   def leave
-    if current_user.project_id.to_s == params[:id]
-      current_user.update_attributes!(:project_id => nil)
+    project = Project.find(params[:id])
+    
+    if current_user.project == project
+      if current_user.manager_of?(project) && project.members.count > 1
+        flash[:alert] = "You are the manager of this project. Relay your role to someone before leaving."
+      else
+        current_user.project = nil
+        current_user.managed_project = nil
+        current_user.save
+      end
     else
       flash[:alert] = "You are not a part of this project."
     end
