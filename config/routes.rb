@@ -10,6 +10,7 @@ HackNight::Application.routes.draw do
   resources :authentications, :only => :create
   resources :projects
   resources :messages, :only => [:create, :index]
+  resources :events
 
   post "willgo" => "attendances#willgo"
   post "wontgo" => "attendances#wontgo"
