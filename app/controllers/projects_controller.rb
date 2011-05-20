@@ -25,6 +25,7 @@ class ProjectsController < ApplicationController
     elsif !@project.has_vacant_slots?
       flash[:alert] = "This project doesn't have vacant slots. Talk to the members."
     else
+      current_user.managed_project = @project unless @project.members.any?
       current_user.project = @project
       current_user.save
     end

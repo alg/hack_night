@@ -71,6 +71,17 @@ describe ProjectsController do
       specify { flash[:alert].should == "This project doesn't have vacant slots. Talk to the members." }
       it      { should redirect_to :root }
     end
+    
+    context "as a first member of the project" do
+      before  { get :join, :id => project.id }
+      specify { @user.reload.should be_manager_of project }
+    end
+    
+    context "as a second member of the project" do
+      before  { project.members << Factory(:user) }
+      before  { get :join, :id => project.id }
+      specify { @user.reload.should_not be_manager_of project }
+    end
   end
   
   describe "leave" do

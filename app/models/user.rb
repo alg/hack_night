@@ -51,4 +51,8 @@ class User
     nickname
   end
 
+  def manager_of?(project)
+    self.managed_project == project
+  end
+  
 end
