@@ -1,4 +1,5 @@
 HackNight::Application.routes.draw do
+
   root  :to => 'dashboard#show'
   post  '/update_status' => 'dashboard#update_status', :as => 'update_status'
   
@@ -20,4 +21,7 @@ HackNight::Application.routes.draw do
 
   post "willgo" => "attendances#willgo"
   post "wontgo" => "attendances#wontgo"
+
+  mount AssetServer.instance => 'javascripts'
+  mount AssetServer.instance => 'stylesheets'
 end

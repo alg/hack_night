@@ -55,3 +55,4 @@ module HackNight
     config.filter_parameters += [:password]
   end
 end
+

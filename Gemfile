@@ -13,6 +13,11 @@ gem "simple_form"
 gem 'devise'
 gem 'omniauth'
 
+gem 'coffee-script'
+gem 'yui-compressor', :require => 'yui/compressor'
+gem 'json'
+gem 'sprockets', :git => 'git://github.com/sstephenson/sprockets.git'
+
 group :development do
   gem "mongrel"
 end
