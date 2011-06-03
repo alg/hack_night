@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.7'
+gem 'rake', '0.8.7'
 
 gem "SystemTimer"
 gem "mongoid", "~> 2.0"
@@ -26,6 +27,8 @@ group :development, :test do
   gem "rspec-rails"
   gem "watchr"
   gem "ruby-debug"
+  gem 'autotest-rails'
+  gem 'awesome_print'
 end
 
 group :test do
