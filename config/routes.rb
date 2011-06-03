@@ -22,8 +22,8 @@ HackNight::Application.routes.draw do
   post "willgo" => "attendances#willgo"
   post "wontgo" => "attendances#wontgo"
 
-  mount AssetServer.instance => 'javascripts'
-  # mount AssetServer.instance => 'stylesheets'
+  # mount AssetServer.instance => 'javascripts'
+  mount AssetServer.instance => 'stylesheets'
 
   match "javascripts/:id.js" => 'scripts#show'
 end
