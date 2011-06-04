@@ -18,7 +18,6 @@ gem 'coffee-script'
 gem 'yui-compressor', :require => 'yui/compressor'
 gem 'json'
 gem 'sprockets', :git => 'git://github.com/sstephenson/sprockets.git'
-gem 'therubyracer'
 
 group :development do
   gem "mongrel"
