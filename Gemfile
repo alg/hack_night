@@ -29,6 +29,7 @@ group :development, :test do
   gem "watchr"
   gem "ruby-debug"
   gem 'autotest-rails'
+  gem 'autotest-growl'
   gem 'awesome_print'
 end
 

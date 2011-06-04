@@ -45,6 +45,7 @@ GEM
     activesupport (3.0.7)
     addressable (2.2.4)
     arel (2.0.9)
+    autotest-growl (0.2.9)
     autotest-rails (4.1.0)
       ZenTest
     awesome_print (0.4.0)
@@ -223,6 +224,7 @@ PLATFORMS
 
 DEPENDENCIES
   SystemTimer
+  autotest-growl
   autotest-rails
   awesome_print
   bson_ext (~> 1.3)
