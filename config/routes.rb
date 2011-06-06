@@ -2,9 +2,9 @@ HackNight::Application.routes.draw do
 
   root  :to => 'dashboard#show'
   post  '/update_status' => 'dashboard#update_status', :as => 'update_status'
-  
-  match '/auth/:provider/callback' => 'authentications#create'
-  match '/auth/failure' => 'authentications#failure'
+
+  match '/users/auth/:provider/callback' => 'authentications#create'
+  match '/users/auth/failure' => 'authentications#failure'
   devise_for :users
 
   resources :authentications, :only => :create
@@ -13,7 +13,7 @@ HackNight::Application.routes.draw do
       get :join
       get :leave
     end
-    
+
     resources :links, :only => :create
   end
   resources :messages, :only => [ :create, :index ]
@@ -21,7 +21,4 @@ HackNight::Application.routes.draw do
 
   post "willgo" => "attendances#willgo"
   post "wontgo" => "attendances#wontgo"
-
-  mount AssetServer.instance => 'javascripts'
-  mount AssetServer.instance => 'stylesheets'
 end

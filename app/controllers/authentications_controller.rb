@@ -27,7 +27,6 @@ class AuthenticationsController < ApplicationController
       :expires => user.remember_expires_at,
       :path => "/"
     }
-    configuration[:domain] = user.cookie_domain if user.cookie_domain?
 
     cookies.signed["remember_user_token"] = configuration
   end

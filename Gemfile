@@ -1,24 +1,26 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
-gem 'rake', '0.8.7'
+gem 'rails', '3.1.0.rc1'
+
+# Asset template engines
+gem 'coffee-script'
+gem 'uglifier'
+gem 'therubyracer'
+gem 'json'
+
+gem 'jquery-rails'
 
 gem "SystemTimer"
-gem "mongoid", "~> 2.0"
-gem "bson_ext", "~> 1.3"
+gem "mongoid"
+gem "bson_ext"
 gem "haml"
+gem 'sass-rails'
 gem "less"
 gem "inherited_resources"
 gem "simple_form"
 
 gem 'devise'
 gem 'omniauth'
-
-gem 'coffee-script'
-gem 'yui-compressor', :require => 'yui/compressor'
-gem 'json'
-gem 'sprockets', :git => 'git://github.com/sstephenson/sprockets.git'
-gem 'therubyracer'
 
 group :development do
   gem "mongrel"

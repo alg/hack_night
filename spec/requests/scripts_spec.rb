@@ -5,7 +5,7 @@ describe "coffee scripts" do
   describe 'GET a script' do
 
     context 'an existing .coffee' do
-      before { get "/javascripts/dashboard.js", :format => :js }
+      before { get "/assets/application.js", :format => :js }
 
       subject { response }
 
@@ -18,7 +18,7 @@ describe "coffee scripts" do
 
     context 'such .coffee doesn\'t exist' do
       it "should raise 404" do
-        lambda { get("/javascripts/non-existing-script.js", :format => :js) }.
+        lambda { get("/assets/non-existing-script.js", :format => :js) }.
           should raise_error(ActionController::RoutingError)
       end
     end
