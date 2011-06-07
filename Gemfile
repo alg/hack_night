@@ -5,7 +5,7 @@ gem 'rails', '3.1.0.rc1'
 # Asset template engines
 gem 'coffee-script'
 gem 'uglifier'
-gem 'therubyracer'
+gem 'therubyracer', :git => "https://github.com/cowboyd/therubyracer.git"
 gem 'json'
 
 gem 'jquery-rails'
