@@ -33,6 +33,7 @@ group :development, :test do
   gem 'autotest-rails'
   gem 'autotest-growl'
   gem 'awesome_print'
+  gem 'webmock'
 end
 
 group :test do
