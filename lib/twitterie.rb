@@ -2,17 +2,18 @@ class Twitterie
   ApiError = Class.new(Exception)
 
   def self.access_token
-    consumer = OAuth::Consumer.new(AppConfig['twitter']['consumer_key'], AppConfig['twitter']['consumer_secret'],
-                                   { :site => "http://api.twitter.com",
-                                     :scheme => :header
-                                   })
-    # now create the access token object from passed values
-    token_hash = {
-      :oauth_token => AppConfig['twitter']['oauth_token'],
-      :oauth_token_secret => AppConfig['twitter']['oauth_token_secret']
-    }
-    access_token = OAuth::AccessToken.from_hash(consumer, token_hash)
-    return access_token
+    @@access_tocken ||= begin
+      consumer = OAuth::Consumer.new(AppConfig['twitter']['consumer_key'], AppConfig['twitter']['consumer_secret'],
+                                     { :site => "http://api.twitter.com",
+                                       :scheme => :header
+                                     })
+      # now create the access token object from passed values
+      token_hash = {
+        :oauth_token => AppConfig['twitter']['oauth_token'],
+        :oauth_token_secret => AppConfig['twitter']['oauth_token_secret']
+      }
+      OAuth::AccessToken.from_hash(consumer, token_hash)
+    end
   end
 
 
