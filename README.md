@@ -5,6 +5,7 @@ Installation
 ------------
 
 * Create config/config.private.yml and set twitter app keys like so:
+
 ```
 twitter:
   consumer_key:       set me in config.private.yml
