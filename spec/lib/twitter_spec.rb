@@ -1,54 +1,52 @@
 require 'spec_helper'
 require 'twitterie'
 
-class Twit
-  include Twitterie
+def tw_reponse(name)
+  File.open("spec/fixtures/twitter-responses/#{name}.response")
 end
 
-describe "Twitter" do
-  specify "get timeline" do
-    # WebMock.allow_net_connect!
-    stub_request(:get, "http://api.twitter.com/1/statuses/home_timeline.json").to_return(:body => 'blaa')
+def tw_stub_request(method, api_call, *args)
+  stub_request(method, "http://api.twitter.com/1/#{api_call}.json", *args)
+end
 
-    response = Twit.new.timeline
-    # data = ActiveSupport::JSON.decode(response.body)
 
-    response.code.should eql "200"
-    response.body.should_not be_empty
-  end
+describe Twitterie do
+  after { WebMock.disable_net_connect!(:allow_localhost => true) }
 
-  specify "send a message" do
-    WebMock.allow_net_connect!
 
-    # stub_request(:post, "http://api.twitter.com/version/direct_messages/new.json")
-
-    response = Twit.new.post_direct_message("iosadchii", "hi there")
-    response.code.should eql "200"
-    response.body.should include "hi there"
+  describe 'timeline' do
+    before { tw_stub_request(:get, "statuses/home_timeline").to_return(:body => tw_reponse("statuses-home_timeline.success")) }
+    specify { Twitterie.timeline.should be_a Array }
   end
 
 
-  describe "send a twit" do
-    before :all do
-      WebMock.allow_net_connect!
-
-      @response = Twit.new.update_status("playing nice with the kitten #{Time.now}")
+  describe 'send a message' do
+    context 'recipient is valid' do
+      before { tw_stub_request(:post, "direct_messages/new").to_return(:body => tw_reponse("direct_messages-new.success")) }
+      specify { lambda { Twitterie.post_direct_message("micky_mouse", "hi there") }.should_not raise_error }
     end
 
-    specify { @response.code.should eql "200" }
-    specify { @response.body.should include "playing nice with the kitten"}
+    context 'recipient is invalid' do
+      before { tw_stub_request(:post, "direct_messages/new").to_return(:status => 403, :body => tw_reponse("direct_messages-new.forbidden")) }
+      specify { lambda { Twitterie.post_direct_message("tom_the_cat", "hi there") }.should raise_error(Twitterie::ApiError) }
+    end
   end
 
 
-  describe "remove all the twits" do
-    before { @twits = Twit.new.timeline }
+  describe "send a tweet" do
+    before { tw_stub_request(:post, "statuses/update").to_return(:body => tw_reponse("statuses-update.success")) }
+    specify { lambda { Twitterie.update_status("playing nice with the kitten #{Time.now}") }.should_not raise_error }
+  end
 
-    specify "should remove every twit from the timeline" do
-      WebMock.allow_net_connect!
 
-      @twits.each do |twit|
-        response = Twit.new.destroy(twit["id"])
-        response.code.should eql "200"
+  describe "remove all the tweets" do
+    specify "should remove every tweet from the timeline" do
+      tw_stub_request(:get, "statuses/home_timeline").to_return(:body => tw_reponse("statuses-home_timeline.success"))
+      stub_request(:post, /http:\/\/api.twitter.com\/1\/statuses\/destroy\/.*/).to_return(:body => tw_reponse("statuses-destroy.success"))
+      @tweets = Twitterie.timeline
+
+      @tweets.each do |tweet|
+        lambda{ Twitterie.destroy(tweet["id"]) }.should_not raise_error
       end
     end
   end

@@ -1,6 +1,7 @@
-module Twitterie
+class Twitterie
+  ApiError = Class.new(Exception)
 
-  def access_token
+  def self.access_token
     consumer = OAuth::Consumer.new(AppConfig['twitter']['consumer_key'], AppConfig['twitter']['consumer_secret'],
                                    { :site => "http://api.twitter.com",
                                      :scheme => :header
@@ -14,26 +15,33 @@ module Twitterie
     return access_token
   end
 
-  def request(method, api_call, params = {}, headers = {})
+
+  def self.request(method, api_call, params = {}, headers = {})
     access_token.request(method, "http://api.twitter.com/1/#{api_call}.json", params, headers)
   end
 
 
-  def post_direct_message(to, msg)
-    request(:post, "direct_messages/new", { :user => to, :text => msg })
+  def self.process(*args)
+    response = request(*args).tap{ |r| raise ApiError.new(r.body) unless r.code == "200" }
+    ActiveSupport::JSON.decode response.body
   end
 
 
-  def update_status(twit)
-    request(:post, "statuses/update", { :status => twit })
+  def self.post_direct_message(to, msg)
+    process(:post, "direct_messages/new", { :user => to, :text => msg })
   end
 
-  def destroy(twit_id)
-    request(:post, "statuses/destroy/#{twit_id}")
+
+  def self.update_status(twit)
+    process(:post, "statuses/update", { :status => twit })
   end
 
-  def timeline
-    ActiveSupport::JSON.decode request(:get, "statuses/home_timeline").body
+  def self.destroy(twit_id)
+    process(:post, "statuses/destroy/#{twit_id}")
+  end
+
+  def self.timeline
+    process(:get, "statuses/home_timeline")
   end
 
 end
