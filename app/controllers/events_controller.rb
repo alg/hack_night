@@ -7,4 +7,9 @@ class EventsController < ApplicationController
   def update
     update! { :root }
   end
+
+  def notify
+    Notifier.emit_hacknight_approaching_notification!
+    redirect_to :root
+  end
 end

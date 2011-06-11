@@ -10,4 +10,5 @@
 
     = link_to "Dashboard", root_path
     = link_to "Edit HN", edit_event_path if admin?
+    = link_to "Notify people!", notify_event_path, :method => :post, :confirm => "Really send out notifications?" if admin?
 

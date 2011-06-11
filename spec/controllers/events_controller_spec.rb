@@ -21,6 +21,14 @@ describe EventsController do
         it      { should render_template :edit }
       end
     end
+
+
+    describe "POST #notify" do
+      it "should send notifications" do
+        Notifier.should_receive(:emit_hacknight_approaching_notification!)
+        post :notify
+      end
+    end
   end
 
 
@@ -28,12 +36,12 @@ describe EventsController do
     let(:user) { Factory :user, :is_admin => false }
 
     describe "edit" do
-      before { get :edit, :id => event.id }
+      before { get :edit }
       it_behaves_like "admin area"
     end
 
     describe "update" do
-      before  { put :update, :id => event.id }
+      before  { put :update }
       it_behaves_like "admin area"
     end
   end
