@@ -7,6 +7,7 @@ class DashboardController < ApplicationController
     @upcoming_projects = Project.upcoming
     @board             = Message.for_board
     @wanderers         = User.wanderers
+    @event             = Event.get
   end
 
   def update_status

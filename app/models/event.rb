@@ -10,9 +10,10 @@ class Event
   # validates_presence_of :date
 
   field :when, :type => Time
-  field :info
+  field :address
+  field :phone
 
-  validates_presence_of :when, :info
+  validates_presence_of :when, :address, :phone
 
   def self.get(*args)
     Event.first || Event.new

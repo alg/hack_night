@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe Event do
-  it { should have_fields :when, :info }
+  it { should have_fields :when, :address, :phone }
   it { should validate_presence_of :when }
-  it { should validate_presence_of :info }
+  it { should validate_presence_of :address }
+  it { should validate_presence_of :phone }
 
   describe "self.get" do
     subject { Event.get }

@@ -36,11 +36,9 @@
   #upcoming.column
     %h1 Upcoming
 
-    .date May 19, 2011
-    .address
-      Solovyova blah blah blah
-    .phone
-      +38 066 7600063
+    .date= @event.when.to_s(:short)
+    .address= @event.address
+    .phone= @event.phone
     = link_to "Show on Map", "#", :id => 'show-on-map'
 
     %ul.agenda

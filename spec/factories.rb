@@ -19,5 +19,6 @@ end
 
 Factory.define :event do |f|
   f.when     Time.now
-  f.info     "Solovieva 4, office 83"
+  f.address     "Solovieva 4, office 83"
+  f.phone       { Faker::PhoneNumber.phone_number }
 end
