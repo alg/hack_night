@@ -1,4 +1,4 @@
-= simple_form_for resource, :url => :event do |f|
+= simple_form_for resource, :url => :event, :method => :put do |f|
   = f.input :when, :hint => "e.g. 05/19/2011 18:00"
   = f.input :address
   = f.input :phone
