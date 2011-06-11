@@ -28,6 +28,11 @@ describe Event do
   describe "#upcoming" do
     subject { @event.upcoming? }
 
+    context "it's not setup at all" do
+      before { @event = Event.new }
+      it { should be false }
+    end
+
     context "it's not yet started" do
       before { @event = Factory :event, :when => Time.now + 1.day }
       it { should be true }

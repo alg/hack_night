@@ -20,6 +20,6 @@ class Event
   end
 
   def upcoming?
-    self.when > Time.now
+    !!(self.when and self.when > Time.now)
   end
 end
