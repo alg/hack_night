@@ -23,4 +23,20 @@ describe Event do
       it { should eql @ev }
     end
   end
+
+
+  describe "#upcoming" do
+    subject { @event.upcoming? }
+
+    context "it's not yet started" do
+      before { @event = Factory :event, :when => Time.now + 1.day }
+      it { should be true }
+    end
+
+    context "it's left in the past" do
+      before { @event = Factory :event, :when => Time.now - 1.day }
+      it { should be false }
+    end
+  end
+
 end

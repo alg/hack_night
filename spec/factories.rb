@@ -18,7 +18,7 @@ Factory.define :link do |f|
 end
 
 Factory.define :event do |f|
-  f.when     Time.now
+  f.when     Time.now + 1.week
   f.address     "Solovieva 4, office 83"
   f.phone       { Faker::PhoneNumber.phone_number }
 end

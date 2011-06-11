@@ -18,4 +18,8 @@ class Event
   def self.get(*args)
     Event.first || Event.new
   end
+
+  def upcoming?
+    self.when > Time.now
+  end
 end

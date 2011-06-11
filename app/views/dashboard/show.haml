@@ -34,17 +34,20 @@
           = f.submit "Suggest Project", :class => "button"
 
   #upcoming.column
-    %h1 Upcoming
+    - if Event.get.upcoming?
+      %h1 Upcoming
 
-    .date= @event.when.to_s(:short)
-    .address= @event.address
-    .phone= @event.phone
-    = link_to "Show on Map", "#", :id => 'show-on-map'
+      .date= @event.when.to_s(:short)
+      .address= @event.address
+      .phone= @event.phone
+      = link_to "Show on Map", "#", :id => 'show-on-map'
 
-    %ul.agenda
-      = render :partial => "upcoming_project", :collection => @upcoming_projects
+      %ul.agenda
+        = render :partial => "upcoming_project", :collection => @upcoming_projects
 
-      - if @wanderers.any?
-        %li.wanderers
-          .project Wanderers
-          %ul= render :partial => "wanderer", :collection => @wanderers
+        - if @wanderers.any?
+          %li.wanderers
+            .project Wanderers
+            %ul= render :partial => "wanderer", :collection => @wanderers
+    - else
+      %p Nothing planned yet
