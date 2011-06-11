@@ -13,4 +13,8 @@ class Event
   field :info
 
   validates_presence_of :when, :info
+
+  def self.get
+    Event.first || Event.new
+  end
 end

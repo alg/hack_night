@@ -18,8 +18,6 @@ Factory.define :link do |f|
 end
 
 Factory.define :event do |f|
-  f.date     Date.today
-  f.time     Time.now
-  f.address  'Solovieva 4, office 83'
-  f.phone    555-555-555
+  f.when     Time.now
+  f.info     "Solovieva 4, office 83"
 end
