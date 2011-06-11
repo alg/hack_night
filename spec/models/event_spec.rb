@@ -8,6 +8,10 @@ describe Event do
   describe "self.get" do
     subject { Event.get }
 
+    it "should accept and ignore ID argument" do
+      lambda{ Event.get(123) }.should_not raise_error
+    end
+
     context "no record exist" do
       it { should be_a Event }
       it { should be_new_record }

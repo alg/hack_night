@@ -14,7 +14,7 @@ class Event
 
   validates_presence_of :when, :info
 
-  def self.get
+  def self.get(*args)
     Event.first || Event.new
   end
 end

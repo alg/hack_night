@@ -17,7 +17,7 @@ HackNight::Application.routes.draw do
     resources :links, :only => :create
   end
   resources :messages, :only => [ :create, :index ]
-  resources :events
+  resource :event, :only => [:edit, :update]
 
   post "willgo" => "attendances#willgo"
   post "wontgo" => "attendances#wontgo"

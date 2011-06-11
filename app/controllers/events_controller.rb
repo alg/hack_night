@@ -1,13 +1,10 @@
 class EventsController < ApplicationController
   inherit_resources
+  defaults :finder => :get
 
-  before_filter :admin_required, :except => [:index, :show]
-
-  def create
-    create! { events_path }
-  end
+  before_filter :admin_required
 
   def update
-    update! { events_path }
+    update! { :root }
   end
 end

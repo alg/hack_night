@@ -1,4 +1,4 @@
-= simple_form_for resource do |f|
+= simple_form_for resource, :url => :event do |f|
   = f.input :when
   = f.input :info, :as => :text, :hint => "How to get there? What to bring? Whom to be afraid of? :)"
   = f.button :submit
