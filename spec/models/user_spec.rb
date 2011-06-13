@@ -65,5 +65,22 @@ describe User do
       it { should include @wanderer }
       it { should_not include @coder, @lazy_gut }
     end
+
+    describe "participants" do
+      subject { User.participants }
+      it { should include @wanderer, @coder }
+      it { should_not include @lazy_gut }
+    end
+  end
+
+
+  describe "reset_participants!" do
+    before do
+      @user = Factory.build(:user)
+      User.should_receive(:participants).and_return([@user])
+      @user.should_receive(:update_attribute).with(:participating?, nil)
+    end
+
+    specify { lambda{ User.reset_participants! }.should_not raise_error }
   end
 end

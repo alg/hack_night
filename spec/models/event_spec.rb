@@ -44,4 +44,52 @@ describe Event do
     end
   end
 
+
+  describe "#is_a_new_event?" do
+    subject { @event.is_a_new_event? }
+
+    context "no event exist" do
+      before { @event = Event.new }
+      it { should be_false }
+    end
+
+    context "a past event exist" do
+      before { @event = Factory(:event, :when => 1.month.ago) }
+      it { should be_false}
+
+      context "when I create a new event" do
+        before { @event.when = 1.week.since }
+        it { should be_true}
+      end
+    end
+
+    context "upcoming event exist" do
+      before { @event = Factory(:event, :when => 1.month.since) }
+      before { @event.when = 2.month.since }
+      it { should be_false }
+    end
+  end
+
+
+  describe "reset_participants!" do
+    context "it's a new event" do
+      before { Event.any_instance.stub(:is_a_new_event?).and_return(true) }
+      before { User.should_receive(:reset_participants!) }
+
+      specify { lambda{ Event.get.reset_participants! }.should_not raise_error }
+    end
+
+    context "it's not a new event" do
+      before { Event.any_instance.stub(:is_a_new_event?).and_return(false) }
+      before { User.should_not_receive(:reset_participants!) }
+
+      specify { lambda{ Event.get.reset_participants! }.should_not raise_error }
+    end
+
+    describe "should be called on save" do
+      before { Event.any_instance.should_receive(:reset_participants!) }
+      specify { Factory.build(:event).save! }
+    end
+  end
+
 end

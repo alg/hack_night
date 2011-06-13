@@ -22,7 +22,8 @@ class User
   validates_presence_of :name
   validates_presence_of :nickname
 
-  scope :wanderers, where(:project_id => nil).and(:participating? => true)
+  scope :participants, where(:participating? => true)
+  scope :wanderers, participants.where(:project_id => nil)
 
   def self.create_from_auth_info!(auth)
     ui = auth['user_info']
@@ -31,6 +32,10 @@ class User
       :location => ui['location'],
       :nickname => ui['nickname'],
       :image    => ui['image'] })
+  end
+
+  def self.reset_participants!
+    participants.each { |p| p.update_attribute :participating?, nil }
   end
 
   def involved?
@@ -56,5 +61,5 @@ class User
   def manager_of?(project)
     self.managed_project == project
   end
-  
+
 end
