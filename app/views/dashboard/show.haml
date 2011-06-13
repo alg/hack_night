@@ -1,4 +1,5 @@
-#attendance.box= render "attendance"
+- if @event.upcoming?
+  #attendance.box= render "attendance"
 
 #details.box.large
   #messages.column
