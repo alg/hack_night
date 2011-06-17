@@ -24,7 +24,15 @@ class Notifier < ActionMailer::Base
   #
   def self.emit_hacknight_approaching_notification!
     User.all.each do |u|
-      hacknight_approaching_notification(u).deliver
+      begin
+        hacknight_approaching_notification(u).deliver
+      rescue Twitterie::ApiError => e
+        # just do nothing - most probably user is not following us
+        # though I'd prefer to be able to add something like this
+        #    Notification.new.to(u).saying("please follow us on twitter")
+        # and show the user a Notification next time he visits us
+      end
+
     end
   end
 
