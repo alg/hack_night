@@ -6,7 +6,7 @@
         %em= current_user
         = link_to "Sign out", destroy_user_session_path
       - else
-        = link_to "Sign in", '/auth/twitter'
+        = link_to "Sign in", auth_with_twitter_path
 
     = link_to "Dashboard", root_path
     = link_to "Edit HN", edit_event_path if admin?
